@@ -12,14 +12,22 @@ var observable = Observable.create((observer:any) => {
     }
 })
 
-const subscription = observable.subscribe(
+const observer = observable.subscribe(
     (x:any) => addItem(x),
     (error:any) => addItem(error),
     () => addItem('Completed')
 );
 
+const observer2 = observable.subscribe(
+    (x:any) => addItem(x),
+    (error:any) => addItem(error),
+    () => addItem('Completed')
+);
+
+observer.add(observer2);
+
 setTimeout(() => {
-    subscription.unsubscribe();
+    observer.unsubscribe();
 }, 6001);
 
 function addItem(val: any) {

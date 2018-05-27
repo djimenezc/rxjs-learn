@@ -41,3 +41,16 @@ This is also useful because it results in only 1 network request if you're deali
 This is warm because we've converted our cold observable to a warm observable. A truly hot observable is one that emits values without a subscriber having subscribed to it. 
 
 An example of a hot observable would be mouse movements made by a user.
+
+You can use these creation operators that create observables in a variety of ways:
+
+Of
+FromEventPattern
+FromEvent
+FromPromise
+Interval
+Range
+Timer
+Empty
+Throw
+Never

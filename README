@@ -1,2 +1,43 @@
 
 https://www.youtube.com/watch?v=PhggNGsSQyg&t=26s&list=WL&index=4
+
+https://coursetro.com/posts/code/147/How-to-Install-RxJS---Setting-up-a-Development-Environment
+
+What is a Stream?
+A stream in the RxJS world simply represents values over time. Users sending chat messages, a user clicking around on a page, a user filling out different formfields in a form; these all represent the basic concept of values (or events) that take place over a period of time.
+
+So, a stream is simply a concept. One that's necessary to understand, however, because Observables are what facilitates a stream.
+
+Observables, Observers & Subscriptions
+An observable is a function that produces a stream of values to an observer over time. 
+When you subscribe to an observable, you are an observer.
+An observable can have multiple observers.
+This is the basic gist of the relationship between observables, observers and subscriptions. Of course, there are more details, which we'll look at closer.
+
+
+A Closer Look at Observers
+Once again, observers read values coming from an observable. An observer is simply a set of callbacks that accept notifications coming from the observer, which include:
+
+next
+error
+complete
+Observers are called partial, which means you don't have to provide all three callbacks in order for it to work.
+
+In our current example, we've only provided for the next callback. Let's modify our observable to emit some values with a call to .complete() between them, and then add the other two callbacks for error and complete: on the observer:
+
+Hot vs. Cold Observables
+The next most important aspect of observables to understand is whether or not an observable is hot or cold.
+
+A cold observable -- like the type we have been working with so far -- is an observable whose producer is activated once a subscription has been created.
+
+In other words, a cold observable is an observable with a producer that's created inside of the observable. Whenever a new subscription is created, it will receive the same values, even the subscription was created at a different time.
+
+An observable is hot when the producer is emitting values outside of the observable.
+
+By adding the .share() operator, it will share the same source to multiple subscribers.
+
+This is also useful because it results in only 1 network request if you're dealing with an API.
+
+This is warm because we've converted our cold observable to a warm observable. A truly hot observable is one that emits values without a subscriber having subscribed to it. 
+
+An example of a hot observable would be mouse movements made by a user.

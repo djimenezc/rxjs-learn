@@ -1,12 +1,19 @@
 import { Observable } from "rxjs/Observable";
 
-var observable = Observable.create(function subscribe(observer:any) {
+var observable = Observable.create((observer:any) => {
     observer.next('Hey guys!')
-});
+    observer.next('How are you?')
+    observer.complete()
+    observer.next('This will not send')
+})
 
-observable.subscribe((x:any) => addItem(x));
+observable.subscribe(
+    (x:any) => addItem(x),
+    (error:any) => addItem(error),
+    () => addItem('Completed')
+);
 
-function addItem(val:any) {
+function addItem(val: any) {
     var node = document.createElement("li");
     var textnode = document.createTextNode(val);
     node.appendChild(textnode);

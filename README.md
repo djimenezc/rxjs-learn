@@ -123,3 +123,15 @@ Let's say that we wanted to merge two separate observables into one. This merge 
 Here's what the marble diagram looks like for merge:
 
 ![Merge Operator](merge.png "Merge Operator")
+
+### Map Operator
+
+Map is one operator that you see a lot when working within Angular and API's. It simply allows you to take the input values and make some type of transformation.
+
+### Pluck Operator 
+
+Let's say your observable emits an array of objects with multiple properties, but you only need a single property?  Well, you can pluck that property from the original observable, and return a new observable with just that property:
+
+### SkipUntil Operator
+
+This operator is a little more complex than the previous examples. It allows you to start emitting events from one observable, based on when a second observable begins emitting events.

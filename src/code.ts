@@ -1,11 +1,24 @@
 import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
+import { Subject } from "rxjs/Subject";
+import { interval } from "rxjs/Observable/interval";
+import "rxjs/add/operator/skipUntil";
 
-    Observable.create((observer:any) => {
-        observer.next('Hey guys!')
-    })
-    .map((val:any) => val.toUpperCase())
-    .subscribe((x:any) => addItem(x));
+var observable1 = Observable.create((data:any) => {
+    var i = 1
+    setInterval(() => {
+        data.next(i++)
+    }, 1000)
+})
+
+var observable2 = new Subject;
+
+setTimeout(() => {
+    observable2.next('Hey!')
+}, 3000)
+
+var newObs = observable1.skipUntil(observable2)
+
+newObs.subscribe((x:any) => addItem(x));
 
 // Our handy function for showing the values:
 function addItem(val:any) {

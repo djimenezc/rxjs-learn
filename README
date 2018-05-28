@@ -67,4 +67,14 @@ BehaviorSubject is a special type of Subject whose only different is that it wil
 
 For instance, in the above example of a regular Subject, when Observer 2 subscribed, it did not receive the previously emitted value 'The first thing has been sent' -- In the case of a BehaviorSubject, it would. 
 
+ReplaySubject
+Another variation of the Subject is a ReplaySubject.
 
+It's like BehaviorSubject, except it allows you to specify a buffer, or number of emitted values to dispatch to observers. BehaviorSubject only dispatches the last emitted value, and ReplaySubject allows you to dispatch any designated number of values.
+
+ReplaySubject accepts an optional second argument upon creation, which is referred to as the window time, and it's defined in milliseconds. It allows you to define a maximum number of events to return in the first argument, and the second argument is the time in milliseconds.
+
+AsyncSubject
+This is the last subject variation, and it's perhaps the most simple to understand.
+
+AsyncSubject only emits the very last value, and will only do so once .complete() has been called on the subject.

@@ -1,31 +1,23 @@
 import { Observable } from "rxjs/Observable";
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { Subject } from "rxjs/Subject";
-import { AsyncSubject } from "rxjs/AsyncSubject";
+import { merge } from 'rxjs/observable/merge';
 
-var subject = new AsyncSubject()
+var observable = Observable.create((observer:any) => {
+    observer.next('Hey guys!')
+})
 
-subject.subscribe(
-    data => addItem('Observer 1: '+ data),
-    err => addItem(err),
-    () => addItem('Observer 1 Completed')
-)
+var observable2 = Observable.create((observer:any) => {
+    observer.next('How is it going?')
+})
 
-var i = 1;
-var int = setInterval(() => subject.next(i++), 100);
+// We're using our merge operator here:
+var newObs = merge(observable, observable2);
 
-setTimeout(() => {
-    var observer2 = subject.subscribe(
-        data => addItem('Observer 2: '+ data)
-    )
-    
-    subject.complete()
-}, 500);
+newObs.subscribe((x:any) => addItem(x));
 
-function addItem(val: any) {
+// Our handy function for showing the values:
+function addItem(val:any) {
     var node = document.createElement("li");
     var textnode = document.createTextNode(val);
     node.appendChild(textnode);
     document.getElementById("output").appendChild(node);
 }
-

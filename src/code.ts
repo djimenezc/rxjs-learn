@@ -19,6 +19,10 @@ var observer2 = subject.subscribe(
 subject.next('The second thing has been sent')
 subject.next('A third thing has been sent')
 
+observer2.unsubscribe()
+
+subject.next('A final thing has been sent')
+
 function addItem(val: any) {
     var node = document.createElement("li");
     var textnode = document.createTextNode(val);

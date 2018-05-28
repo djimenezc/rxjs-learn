@@ -54,3 +54,17 @@ Timer
 Empty
 Throw
 Never
+
+Creating a Subject
+
+A Subject, in contrast to an observable, is simply an observer that's also able to emit values. It's both an observable and an observer simultaneously. This is unlike an observable, as an observer that's subscribed to an observable can only read values emitted from an observable.
+
+
+BehaviorSubject
+We've just created a regular Subject, but what about BehaviorSubject?
+
+BehaviorSubject is a special type of Subject whose only different is that it will emit the last value upon a new observer's subscription.
+
+For instance, in the above example of a regular Subject, when Observer 2 subscribed, it did not receive the previously emitted value 'The first thing has been sent' -- In the case of a BehaviorSubject, it would. 
+
+
